@@ -80,6 +80,23 @@ QPushButton#btnUpdate:pressed {
     background-color: #74c7ec;
 }
 
+/* ---- About button ---- */
+QPushButton#btnAbout {
+    background-color: #cba6f7;
+    color: #1e1e2e;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-weight: bold;
+    font-size: 13px;
+}
+QPushButton#btnAbout:hover {
+    background-color: #b4befe;
+}
+QPushButton#btnAbout:pressed {
+    background-color: #89b4fa;
+}
+
 /* ---- Bonus label ---- */
 QLabel#lblBonus {
     color: #cdd6f4;

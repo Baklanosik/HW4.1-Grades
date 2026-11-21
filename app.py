@@ -1,7 +1,7 @@
 import sys
 import os
-import csv
 import subprocess
+from About import AboutWindow
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout,
     QHBoxLayout, QPushButton, QFileDialog, QTableWidget,
@@ -50,9 +50,13 @@ class GradesWindow(QMainWindow):
         self.btn_update = QPushButton("💾  Update File")
         self.btn_update.setObjectName("btnUpdate")
         self.btn_update.clicked.connect(self.update_file)
+        self.btn_about = QPushButton("ℹ️  About")
+        self.btn_about.setObjectName("btnAbout")
+        self.btn_about.clicked.connect(self.open_about)
         top_bar.addWidget(self.lbl_file, stretch=1)
         top_bar.addWidget(self.btn_open)
         top_bar.addWidget(self.btn_update)
+        top_bar.addWidget(self.btn_about)
         root.addLayout(top_bar)
 
         # --- bonus bar ---
@@ -81,9 +85,7 @@ class GradesWindow(QMainWindow):
         self.table.setSelectionBehavior(QTableWidget.SelectRows)
         root.addWidget(self.table, stretch=1)
 
-    # ------------------------------------------------------------------ #
-    #  File loading                                                        #
-    # ------------------------------------------------------------------ #
+
     def file_select(self):
         selected_file, _ = QFileDialog.getOpenFileName(
             self, "Select Student Data File", "", "CSV Files (*.csv);;All Files (*)"
@@ -154,12 +156,11 @@ class GradesWindow(QMainWindow):
         else:
             subprocess.Popen(["xdg-open", self.selected_file])
 
+    def open_about(self):
+        self._about_window = AboutWindow()
+        self._about_window.show()
+
     
-
-
-# ------------------------------------------------------------------ #
-#  Entry point                                                         #
-# ------------------------------------------------------------------ #
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = GradesWindow()
