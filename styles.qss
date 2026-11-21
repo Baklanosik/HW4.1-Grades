@@ -1,0 +1,85 @@
+/* ============================================================
+   styles.qss – Grades Manager
+   ============================================================ */
+
+/* ---- Window / central widget ---- */
+QMainWindow, QWidget {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* ---- File label ---- */
+QLabel#lblFile {
+    color: #a6adc8;
+    font-style: italic;
+    padding-left: 4px;
+}
+
+/* ---- Open-file button ---- */
+QPushButton#btnOpen {
+    background-color: #89b4fa;
+    color: #1e1e2e;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-weight: bold;
+    font-size: 13px;
+}
+QPushButton#btnOpen:hover {
+    background-color: #74c7ec;
+}
+QPushButton#btnOpen:pressed {
+    background-color: #89dceb;
+}
+
+/* ---- Table ---- */
+QTableWidget#gradesTable {
+    background-color: #181825;
+    alternate-background-color: #1e1e2e;
+    gridline-color: #313244;
+    border: 1px solid #313244;
+    border-radius: 6px;
+    selection-background-color: #45475a;
+    selection-color: #cdd6f4;
+}
+
+QTableWidget#gradesTable::item {
+    padding: 4px 0;
+}
+
+/* ---- Header ---- */
+QHeaderView::section {
+    background-color: #313244;
+    color: #89b4fa;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 6px 0;
+    border: none;
+    border-right: 1px solid #45475a;
+    border-bottom: 1px solid #45475a;
+}
+QHeaderView::section:last {
+    border-right: none;
+}
+
+/* ---- Scrollbars ---- */
+QScrollBar:vertical {
+    background: #1e1e2e;
+    width: 10px;
+    margin: 0;
+    border-radius: 5px;
+}
+QScrollBar::handle:vertical {
+    background: #45475a;
+    border-radius: 5px;
+    min-height: 20px;
+}
+QScrollBar::handle:vertical:hover {
+    background: #585b70;
+}
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0;
+}
