@@ -64,6 +64,22 @@ QHeaderView::section:last {
     border-right: none;
 }
 
+QPushButton#btnUpdate {
+    background-color: #a6e3a1;
+    color: #1e1e2e;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-weight: bold;
+    font-size: 13px;
+}
+QPushButton#btnUpdate:hover {
+    background-color: #94e2d5;
+}
+QPushButton#btnUpdate:pressed {
+    background-color: #74c7ec;
+}
+
 /* ---- Bonus label ---- */
 QLabel#lblBonus {
     color: #cdd6f4;

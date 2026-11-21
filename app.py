@@ -1,5 +1,7 @@
 import sys
 import os
+import csv
+import subprocess
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout,
     QHBoxLayout, QPushButton, QFileDialog, QTableWidget,
@@ -45,8 +47,12 @@ class GradesWindow(QMainWindow):
         self.btn_open = QPushButton("📂  Open Student File")
         self.btn_open.setObjectName("btnOpen")
         self.btn_open.clicked.connect(self.file_select)
+        self.btn_update = QPushButton("💾  Update File")
+        self.btn_update.setObjectName("btnUpdate")
+        self.btn_update.clicked.connect(self.update_file)
         top_bar.addWidget(self.lbl_file, stretch=1)
         top_bar.addWidget(self.btn_open)
+        top_bar.addWidget(self.btn_update)
         root.addLayout(top_bar)
 
         # --- bonus bar ---
@@ -132,7 +138,21 @@ class GradesWindow(QMainWindow):
             else:
                 self.corrected_grades[i] = self.original_grades[i] + correction_value
         self.update_table()
-        
+
+    def update_file(self):
+        with open(self.selected_file, 'w') as f:
+            f.write('ID,Grade\n')
+            for i in range(len(self.corrected_grades)):
+                f.write(f'{self.student_ids[i]},{self.corrected_grades[i]}\n')
+
+
+        # Open in the default spreadsheet app (cross-platform)
+        if sys.platform == "win32":
+            os.startfile(self.selected_file)
+        elif sys.platform == "darwin":
+            subprocess.Popen(["open", "-a", "Microsoft Excel", self.selected_file])
+        else:
+            subprocess.Popen(["xdg-open", self.selected_file])
 
     
 
