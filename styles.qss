@@ -64,7 +64,37 @@ QHeaderView::section:last {
     border-right: none;
 }
 
-/* ---- Scrollbars ---- */
+/* ---- Bonus label ---- */
+QLabel#lblBonus {
+    color: #cdd6f4;
+    font-weight: bold;
+    padding-right: 6px;
+}
+
+/* ---- Bonus spin box ---- */
+QSpinBox#spinBonus {
+    background-color: #313244;
+    color: #a6e3a1;
+    border: 1px solid #45475a;
+    border-radius: 6px;
+    padding: 4px 6px;
+    font-size: 14px;
+    font-weight: bold;
+}
+QSpinBox#spinBonus:focus {
+    border: 1px solid #89b4fa;
+}
+QSpinBox#spinBonus::up-button,
+QSpinBox#spinBonus::down-button {
+    width: 18px;
+    background-color: #45475a;
+    border-radius: 3px;
+}
+QSpinBox#spinBonus::up-button:hover,
+QSpinBox#spinBonus::down-button:hover {
+    background-color: #585b70;
+}
+
 QScrollBar:vertical {
     background: #1e1e2e;
     width: 10px;

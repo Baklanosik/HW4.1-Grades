@@ -3,7 +3,7 @@ import os
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout,
     QHBoxLayout, QPushButton, QFileDialog, QTableWidget,
-    QTableWidgetItem, QHeaderView, QLabel
+    QTableWidgetItem, QHeaderView, QLabel, QSpinBox
 )
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont
@@ -48,6 +48,22 @@ class GradesWindow(QMainWindow):
         top_bar.addWidget(self.lbl_file, stretch=1)
         top_bar.addWidget(self.btn_open)
         root.addLayout(top_bar)
+
+        # --- bonus bar ---
+        bonus_bar = QHBoxLayout()
+        lbl_bonus = QLabel("Grade Bonus:")
+        lbl_bonus.setObjectName("lblBonus")
+        self.spin_bonus = QSpinBox()
+        self.spin_bonus.setObjectName("spinBonus")
+        self.spin_bonus.setRange(-100, 100)
+        self.spin_bonus.setValue(0)
+        self.spin_bonus.setFixedWidth(90)
+        self.spin_bonus.setAlignment(Qt.AlignCenter)
+        self.spin_bonus.editingFinished.connect(self.correct_grades)   # fires on Enter
+        bonus_bar.addWidget(lbl_bonus)
+        bonus_bar.addWidget(self.spin_bonus)
+        bonus_bar.addStretch()
+        root.addLayout(bonus_bar)
 
         # --- table ---
         self.table = QTableWidget(50, 3)
@@ -107,6 +123,18 @@ class GradesWindow(QMainWindow):
             self.table.setItem(row, 0, id_item)
             self.table.setItem(row, 1, orig_item)
             self.table.setItem(row, 2, corr_item)
+
+    def correct_grades(self):
+        correction_value = self.spin_bonus.value()
+        for i in range(len(self.original_grades)):
+            if self.original_grades[i] + correction_value > 100: self.corrected_grades[i] = 100
+            elif self.original_grades[i] + correction_value < 0: self.corrected_grades[i] = 0
+            else:
+                self.corrected_grades[i] = self.original_grades[i] + correction_value
+        self.update_table()
+        
+
+    
 
 
 # ------------------------------------------------------------------ #
