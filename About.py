@@ -23,6 +23,9 @@ class AboutWindow(QWidget):
         linkedin_label = QLabel('<a href="https://www.linkedin.com/in/felix-kagan-a26aab3a2/">My Linkedin', self)
         linkedin_label.setOpenExternalLinks(True)
         linkedin_label.setGeometry(120,200,100,30)
+        github_label = QLabel('<a href="https://github.com/Baklanosik/HW4.1-Grades">GitHub Repository', self)
+        github_label.setOpenExternalLinks(True)
+        github_label.setGeometry(100,230,200,30)
 
 if __name__ == '__main__':
     app = QApplication()
